@@ -571,11 +571,8 @@
       }
       .info-note{
         min-height:200px;
-      }
-        
-
-      
-      </style>
+      }  
+    </style>
   </head>
   <body>
     <div id="board-wrap">
@@ -654,5 +651,154 @@
         </div>
       </div>
     </div>
-    
   </body>
+  <script>
+    const INSIDE_DUTIES = [
+      {emoji:'🧹', label:'Floor'},
+      {emoji:'🪟', label:'Window'},
+      {emoji:'🗑️', label:'Trash Bin'},
+      {emoji:'🔳', label:'Blackboard'},
+      {emoji:'🚽', label:'Comfort Room'},
+      ];
+    const OUTSIDE_DUTIES = [
+      {emoji:'🪏', label:'Classroom Backyard'},
+      {emoji:'🏡', label:'Classroom Frontyard'},
+      ];
+
+    let studentCount = 0;
+    let activePhotoCell = null;
+
+    function chipRow(duties){
+      return duties.map(d => `<span class="chip" data-emoji="${d.emoji}" title="${d.label}">${d.emoji} ${d.label}</span>`).join('');
+    }
+
+    function updateEmptyState(){
+      const has = document.querySelectorAll('.student-card').length > 0;
+      document.getElementById('emptyState').style.display = has ? 'none' : 'block';
+    }
+
+    function createStudentCard(name){
+      studentCount++;
+      const id = 'student-' + studentCount;
+      const card = document.createElement('div');
+      card.className = 'student-card';
+      card.dataset.id = id;
+      card.innerHTML = `
+      <button class="remove-btn no-capture" title="Remove">x</button>
+      <div class="card-top">
+      <div class="photo-grid">
+      <div class="photo-cell" data-slot="0">📸</div>
+      <div class="photo-cell" data-slot="1">📸</div>
+      <div class="photo-cell" data-slot="2">📸</div>
+      <div class="photo-cell" data-slot="3">📸</div>
+      </div>
+      <div class="name-block">
+      <input class="student-name" value="${name}" placeholder="Your name">
+      <div class="attendance-toggle present" data-state="present">✔ Present</div>
+      </div>
+      </div>
+      <div class="duty-section">
+      <div class="duty-label">Inside Duty</div>
+      <div class="duty-chips">${chipRow(INSIDE_DUTIES)}</div>
+      <div class="duty-label">Outside Duty</div>
+      <div class="duty-chips">${chipRow(OUTSIDE_DUTIES)}</div>
+      <div class="assigned-emojis"></div>
+      </div>
+      <div class="card-footer no-capture">
+      <button class="my-board-btn">📥 Save Your Board</button>
+      </div>
+      `;
+      document.getElementById('studentsList').appendChild(card);
+      updateEmptyState();
+    }
+
+    function refreshEmojis(card){
+      const selected = [...card.querySelectorAll('.chip-selected')].map(c => c.dataset.emoji);
+      card.querySelector('.assigned-emojis').textContent = selected.join(' ');
+    }
+
+    document.getElementById('studentsList').addEventListener('click', (e) => {
+      const card = e.target.closest('.student-card');
+      if(!card) return;
+
+      if(e.target.classList.contains('remove-btn')){
+        card.remove();
+        updateEmptyState();
+        return;
+      }
+      if(e.target.classList.contains('chip')){
+        e.target.classList.toggle('chip-selected');
+        refreshEmojis(card);
+        return;
+      }
+      if(e.target.classList.contains('attendance-toggle')){
+        const el = e.target;
+        if(el.dataset.state === 'present'){
+          el.dataset.state = 'absent'; el.className = 'attendance-toggle-absent'; el.textContent = '❓ Absent';
+        } else {
+          el.dataset.state = 'present'; el.className = 'attendance-toggle-present'; el.textContent = '✔ Present';
+        }
+        return;
+      }
+      if(e.target.classList.contains('photo-cell')){
+        activePhotoCell = e.target;
+        document.getElementById('photoFileInput').click();
+        return;
+      }
+      if(e.target.classList.contains('my-board-btn')){
+        generateIndividualBoard(card);
+        return;
+      }
+    });
+
+    document.getElementById('photoFileInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if(!file || !activePhotoCell) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        activePhotoCell.style.backgroundImage = `url(${ev.target.result})`;
+        activePhotoCell.dataset.imgSrc = ev.target.result;
+        activePhotoCell.textContent = '';
+      };
+      reader.readAsDataURL(file);
+      e.target.value = '';
+    });
+
+    document.getElementById('addStudentBtn').addEventListener('click', (e) => {
+      createStudentCard('');
+    });
+
+    updateEmptyState();
+
+    document.getElementById('valueOfDay').addEventListener('input', (e) => {
+      document.getElementById('valueRef').textContent = e.target.value || '...';
+    });
+
+    const dateStr = new Date().toLocaleDateString(undefined, {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+    document.getElementById('boardDate').textContent = dateStr;
+
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalBody = document.getElementById('modalBody');
+    const modalTitle = document.getElementById('modalTitle');
+    let lastImageData = null;
+
+    async function generateIndividualBoard(card){
+      const name = card.querySelector('.student-name').value.trim() || 'My';
+      const attState = card.querySelector('.attendance-toggle').dataset.state;
+      const attLabel = attState === 'present' ? '✔ Present' : '❓ Absent';
+      const duties = [...card.querySelectorAll('.chip-selected')].map(c => c.dataset.emoji);
+      const photoCells = [...card.querySelectorAll('.photo-cell')];
+      const photoDataUrl = photoCells.map(cell => cell.dataset.imgSrc || null);
+
+      const valueOfDay = document.getElementById('valueOfDay').value || 'Value';
+      const valueMeaning = document.getElementById('valueMeaning').value;
+      const reflection = document.getElementById('reflectionText').value;
+      const announcements = document.getElementById('announcements').value;
+      const goal = document.getElementById('goalText').value;
+
+      
+
+
+
+      
+  </script>
