@@ -735,9 +735,9 @@
       if(e.target.classList.contains('attendance-toggle')){
         const el = e.target;
         if(el.dataset.state === 'present'){
-          el.dataset.state = 'absent'; el.className = 'attendance-toggle-absent'; el.textContent = '❓ Absent';
+          el.dataset.state = 'absent'; el.className = 'attendance-toggle absent'; el.textContent = '❓ Absent';
         } else {
-          el.dataset.state = 'present'; el.className = 'attendance-toggle-present'; el.textContent = '✔ Present';
+          el.dataset.state = 'present'; el.className = 'attendance-toggle present'; el.textContent = '✔ Present';
         }
         return;
       }
