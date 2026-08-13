@@ -32,7 +32,7 @@
           repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px),
           repeating-linear-gradient(90deg, rgba(0,0,0,0.025) 0px, rgba(0,0,0,0.025) 1px, transparent 1px, transparent 3px),
           linear-gradient(135deg, var(--cork), var(--cork-dark));
-        min-height:100vh;
+        min-height:200vh;
         padding:28px 16px 60px;
       }
       #board-wrap{
@@ -73,7 +73,7 @@
       }
       .washi{
         position:absolute;
-        top:-16px;
+        top:-20px;
         left:50%;
         transform:translateX(-50%) rotate(-2deg);
         width:170px;
@@ -560,7 +560,7 @@
       </style>
   </head>
   <body>
-    <div id="board-wrap" style="justify-content:center;">
+    <div id="board-wrap">
       <div class="board-frame">
         <div class="board-title">
           <div class="washi no-capture"></div>
@@ -569,7 +569,7 @@
         </div>
 
         <div class="columns">
-          <section class="column col-motivational" style="justify-content:center;">
+          <section class="column col-motivational">
             <div class="col-header">🙋🏻🙋🏻‍♀️ Attendance</div>
             <div class="col-sub">Fill your own card. If you don't have any gadgets borrow from your classmate and create your own card.</div>
             <div id="emptyState" class="empty-state">No one's added their bulletin yet. Tap <b>+ Add my Bulletin</b> when it's your turn!</div>
@@ -577,7 +577,7 @@
             <button class="add-student-btn no-capture" id="addStudentBtn">+ Add my Bulletin</button>
           </section>
 
-          <section class="column col-instructional" style="justify-content:center;">
+          <section class="column col-instructional">
             <div class="col-header">🤔 Reflection</div>
             <div class="col-sub">Think and Write</div>
             <div class="instruction-box">
