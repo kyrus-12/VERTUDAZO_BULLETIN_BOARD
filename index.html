@@ -7,4 +7,107 @@
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-      
+      :root{
+        --cork:#b7854f;
+        --cork-dark:#9a6c3d;
+        --paper:#fbf6ea;
+        --paper-edge:#eee2c4;
+        --ink:#3a2f22;
+        --ink-soft:#6b5a44;
+        --pin-red:#e2593f;
+        --pin-teal:#2f9e94;
+        --pin-violet:#8672c9;
+        --tape:#f4dd8c;
+        --tape-edge:#e0c661;
+      }
+      *{
+        box-sizing:border-box;
+      }
+      body{
+        margin:0;
+        font-family:'Nunito', sans-serif;
+        color:var(--ink);
+        background:
+          radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent 40%),
+          repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px),
+          repeating-linear-gradient(90deg, rgba(0,0,0,0.025) 0px, rgba(0,0,0,0.025) 1px, transparent 1px, transparent 3px),
+          linear-gradient(135deg, var(--cork), var(--cork-dark));
+        min-height:100vh;
+        padding:28px 16px 60px;
+      }
+      </style>
+  </head>
+  <body>
+    <div id="board-wrap">
+      <div class="board-frame">
+        <div class="board-title">
+          <div class="washi no-capture"></div>
+          <h1>📌 Our Bulletin Board</h1>
+          <div class="board-date" id="boardDate"></div>
+        </div>
+
+        <div class="columns">
+          <section class="column col-motivational">
+            <div class="col-header">🙋🏻🙋🏻‍♀️ Attendance</div>
+            <div class="col-sub">Fill your own card. If you don't have any gadgets borrow from your classmate and create your own card.</div>
+            <div id="emptyState" class="empty-state">No one's added their bulletin yet. Tap <b>+ Add my Bulletin</b> when it's your turn!</div>
+            <div id"studentList"</div>
+            <button class="add-student-btn no-capture" id="addStudentBtn">+ Add my Bulletin</button>
+          </section>
+
+          <section class="column-col-instructional">
+            <div class="col-header">🤔 Refelection</div>
+            <div class="col-sub">Think and Write</div>
+            <div class="instruction-box">
+              <b>All About My Crush</b>
+              <ol class="question-list">
+                <li>Can you tell me the initials of your crush?</li>
+                <li>Mahal mo pa ba?</li>
+              </ol>
+            </div>
+            <label class="field-label">📝 My Reflection</label>
+            <textarea class="reflection-area" id="reflectionText" placeholder="Write your reflection here..."></textarea>
+            <label class="field-label"> ᯓ⚽️ My Goal for Today</label>
+            <textarea id="goalText" rows="3" placeholder="What is one thing you want to achieve or improve today?" style="width:100%; font-family:'Nunito', sans-serif; font-size:0.9rem; border:1px solid var(--paper-edge); border-radius:6px; padding:8px 10px; background:#fffdf8; color:var(--ink); resize:vertical; min-height:80px;"></textarea>
+          </section>
+
+          <section class="column col-informational">
+            <div class="col-header">🗓️ Word of The Day</div>
+            <div class="col-sub">Choose and Define</div>
+            <div class="value-badge">
+              <span class="value-emoji">ᝰ🪶</span>
+              <textarea class="value-input" id="valueOfDay" placeholder="Write your chosen word here..."></textarea>
+            </div>
+            <label class="field-label">What it means?</label>
+            <textarea class="info-type" id="valueMeaning" placeholder="Write the definition here..."></textarea>
+            <label class="field-label">📢 Announcements</label>
+            <textarea class="info-note" id="annoucements" rows="3"  readonly>📍 Bring your art materials <br> 📍Quiz on Friday</textarea>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <input type="file" id="photoFileInput" accept="image/*" style="display:none;">
+    <div id="individualTemplate"></div>
+
+    <div class="modal-overlay hidden" id="modalOverlay">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2 id="modalTitle">Your Board is Ready! 🎉</h2>
+          <div class="modal-sub">Please wait for your individual bulletin board.</div>
+        </div>
+      <div class="modal-preview-wrap" id="modalBody">
+        <div class="loading-note">Rendering your board...</div>
+      </div>
+        <div class="modal-divider"></div>
+        <div class="modal-instruction">
+          📱<b>Next step:</b> Download the image and post it on your own social media so everyone can see your bulletin today!
+        </div>
+        <div class="modal-actions">
+          <button id="downloadBtn">💾 Download</button>
+          <button id="closeModalBtn">❎ Close</button>
+        </div>
+      </div>
+    </div>
+    
+  </body>
