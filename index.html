@@ -74,9 +74,19 @@
         font-weight:600;
         margin-top:2px;
       }
+      .board-tape-text{
+        display:inline-block;
+        background:var(--tape-edge);
+        color:var(--ink);
+        padding:8px 24px;
+        border-radius:4px;
+        box-shadow:0 2px 5px rgba(0,0,0,0.15);
+        test-shadow:3px 3px 6px white;
+        transform:rotate(-1deg);
+      }
       .washi{
         position:absolute;
-        top:-20px;
+        top:-35px;
         left:50%;
         transform:translateX(-50%) rotate(-2deg);
         width:170px;
@@ -106,8 +116,8 @@
         content:"";
         position:absolute;
         top:-13px;
-        left:50px;
-        transform:translateX(-50px);
+        left:50%;
+        transform:translateX(-50%);
         width:26px;
         height:26px;
         border-radius:50%;
@@ -369,7 +379,7 @@
         border-color:var(--pin-teal);
       }
       .reflection-area{
-        min-height:120px;
+        min-height:400px;
       }
       .value-badge{
         display:flex;
@@ -391,7 +401,7 @@
         border:none;
         background:transparent;
         color:#5b3fa0;
-        width:100%;
+        width:70%;
       }
       .value-input:focus{
         outline:none;
@@ -557,6 +567,9 @@
         margin:0 28px 16px;
         border:none;
       }
+      .info-type{
+        min-height:200px;
+      }
         
 
       
@@ -567,7 +580,9 @@
       <div class="board-frame">
         <div class="board-title">
           <div class="washi no-capture"></div>
-          <h1>📌 Our Bulletin Board</h1>
+          <span class="board-tape-text">
+          <h1>🌍 Our Bulletin Board 🌏</h1>
+          </span>
           <div class="board-date" id="boardDate"></div>
         </div>
 
@@ -593,7 +608,7 @@
             <label class="field-label">📝 My Reflection</label>
             <textarea class="reflection-area" id="reflectionText" placeholder="Write your reflection here..."></textarea>
             <label class="field-label"> ᯓ⚽️ My Goal for Today</label>
-            <textarea id="goalText" rows="3" placeholder="What is one thing you want to achieve or improve today?" style="width:100%; font-family:'Nunito', sans-serif; font-size:0.9rem; border:1px solid var(--paper-edge); border-radius:6px; padding:8px 10px; background:#fffdf8; color:var(--ink); resize:vertical; min-height:80px;"></textarea>
+            <textarea id="goalText" rows="5" placeholder="What is one thing you want to achieve or improve today?" style="width:100%; font-family:'Nunito', sans-serif; font-size:0.9rem; border:1px solid var(--paper-edge); border-radius:6px; padding:8px 10px; background:#fffdf8; color:var(--ink); resize:vertical; min-height:80px;"></textarea>
           </section>
 
           <section class="column col-informational" style="justify-content:center;">
