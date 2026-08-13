@@ -497,7 +497,6 @@
       }
       .modal-preview-wrap{
         padding:0 28px 18px;
-        overflow-x:hidden;
       }
       #previewImage{
         width:100%;
@@ -888,7 +887,7 @@
       try{
         const canvas = await html2canvas(tpl, {backgroundColor:null, scale:2, useCORS:true});
         lastImageData = canvas.toDataURL('image/png');
-        modalBody.innerHTML = `<img id="previewImg" src="${lastImageData}" alt="${escapeHtml(name)}'s bulletin board">`;
+        modalBody.innerHTML = `<img id="previewImage" src="${lastImageData}" alt="${escapeHtml(name)}'s bulletin board">`;
       } catch(err){
         modalBody.innerHTML = '<div class="loading-note">Something went wrong rendering the image. Please try again.</div>';
       }
