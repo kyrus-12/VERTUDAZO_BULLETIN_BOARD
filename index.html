@@ -651,7 +651,7 @@
         </div>
       </div>
     </div>
-  </body>
+
   <script>
     const INSIDE_DUTIES = [
       {emoji:'🧹', label:'Floor'},
@@ -879,8 +879,39 @@
       </div>
       `;
 
+      modalTitle.textContent = `${name}'s Board is Ready! 🥳`;
+      modalOverlay.classList.remove('hidden');
+      modalBody.innerHTML = '<div class="loading-note">Rendering your board...</div>';
 
+      try{
+        const canvas = await html2canvas(tpl, {backgroundColor:null, scale:2, useCORS:true});
+        lastImageData = canvas.toDataURL('image/png');
+        modalBody.innerHTML = `<img id="previewImg" src="${lastImageData}" alt="${escapeHtml(name)}'s bulletin board">`;
+      } catch(err){
+        modalBody.innerHTML = '<div class="loading-note">Something went wrong rendering the image. Please try again.</div>';
+      }
+    }
 
+    function escapeHtml(str){
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
 
-      
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+      modalOverlay.classList.add('hidden');
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      if(!lastImageData) return;
+      const a = document.createElement('a');
+      a.href = lastImageData;
+      a.download =  'my-bulletin-board.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  
   </script>
+  </body>
+</html>
