@@ -800,7 +800,7 @@
         if (src) {
           return `<div style="background-image:url(${src}); background-size:cover; background-position:center; background-color:#f4efe1; width:100%; height:100%;"></div>`;
         } else {
-          return `<div style="background-color:#f4fef1; display:flex; align-items:center; justify:content-center; font-size:2rem; color:#c9bda1; width:100%; height:100%">🤡</div>`;
+          return `<div style="background-color:#f4fef1; display:flex; align-items:center; justify-content:center; font-size:2rem; color:#c9bda1; width:100%; height:100%">🤡</div>`;
         }
       }).join('');
 
@@ -815,6 +815,70 @@
       <div style="text-align:center; margin-bottom:24px; position:relative;">
       <div style="position:absolute; top:-14px; left:50%; transform:translate(-50%) rotate(-2deg); width:170px; height:30px; background:repeating-linear-gradient(45deg, #f4dd8c, #f4dd8c 8px, #e0c661 8px, #e0c661 16px); box-shadow:0 2px 4px rgba(0,0,0,0.25);"></div>
       <h1 style="font-family:'Kalam', cursive; font-weight:700; font-size:2.4rem; color:#fffdf6; text-shadow:0 2px 3px rgba(0,0,0,0.35); margin:0; letter-spacing:0.5px;">🌍 Our Bulletin Board 🌏</h1>
+      <div style="font-size:0.95rem; color:#fff3d9; opacity:0.9; font-weight:600; margin-top:4px;">${dateStr}</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+      <div style="background:#fbf6ea; border-radius:4px; padding:22px 18px 26px; position:relative; box-shadow:0 10px 20px rgba(0,0,0,0.28); min-height:200px;">
+      <div style="position:absolute; top:-13px; left:50%; transform:translateX(-50%); width:26px; height:26px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #ff9a7d, #e2593f); box-shadow:0 3px 5px rgba(0,0,0,0.4);"></div>
+      <div style="font-family:'Kalam', cursive; font-weight:700; font-size:1.35rem; text-align:center; margin-bottom:4px; padding-bottom:8px; border-bottom:2px dashed #eee2c4; color:#e2593f;">🙋🏻‍♂️ Attendance 🙋🏽‍♀️</div>
+      <div style="text-align:center; font-size:0.75rem; color:#6b5a44; margin:6px 0 14px; line-height:1.4;">${escapeHtml(name)}'s bulletin card</div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:3px; width:100%; max-width:320px; aspect-ratio:1; margin:0 auto; border-radius:12px; overflow:hidden; border:4px solid #fff; box-shadow:0 8px 22px rgba(0,0,0,0.25); background:#f0e9d6;">
+      ${photosHtml}
+      </div>
+
+      <div style="text-align:center; font-family:'Kalam', cursive; font-weight:700; color:#3a2f22; margin-top:12px;">${escapeHtml(name)}</div>
+      <div style="display:block; text-align:center; margin:8px auto 0; width:fit-content; font-size:0.9rem; font-weight:700; padding:5px 16px; border-radius:14px; ${attState === 'present' ? 'background:#e4f5e6; color:#2f8a45;' : 'background:#fbe6e2; color:#c14b34;'}">${attLabel}</div>
+
+      <div style="margin-top:18px; border-top:2px dashed #eee2c4; padding-top:14px;">
+      <div style="font-family:'Kalam', cursive; font-weight:700; font-size:1.05rem; margin-bottom:6px; color:#e2593f;">📋 My Duties Today</div>
+      ${dutiesHtml}
+      </div>
+      </div>
+
+      <div style="background:#fbf6ea; border-radius:4px; padding:22px 18px 26px; position:relative; box-shadow:0 10px 20px rgba(0,0,0,0.28); min-height:200px;">
+      <div style="position:absolute; top:-13px; left:50%; transform:translateX(-50%); width:26px; height:26px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #6fd4c8, #2f9e94); box-shadow:0 3px 5px rgba(0,0,0,0.4);"></div>
+      <div style="font-family:'Kalam', cursive; font-weight:700; font-size:1.35rem; margin-bottom:4px; padding:8px; border-bottom:2px dashed #eee2c4; color:#2f9e94;">✨ Reflection</div>
+      <div style="text-align:center; font-size:0.75rem; color:#6b5a44; margin:6px 0 14px; line-height:1.4;">Shared reflection &amp; goals</div>
+
+      <div style="background:#fff; border-left:4px solid #2f9e94; border-radius:4px; padding:12px 12px;font-size:0.9rem; line-height:1.5; color:#6b5a44; margin-bottom:14px;">
+      <b style="color:#2f9e94;">All About My Crush</b>
+      <ol style="margin:8px 0 0 18px; padding:0;">
+      <li>Can you tell me the initials of your crush?</li>
+      <li>Mahal mo pa ba?</li>
+      </ol>
+      </div>
+
+      <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:#6b5a44; margin:12px 0 4px;">My Reflection</div>
+      <div style="width:100%; font-size:0.9rem; border:1px solid #eee2c4; border-radius:6px; padding:10px; background:#fffdf8; color:#3a2f22; white-space:pre-wrap; min-height:100px;">${escapeHtml(reflection)}</div>
+
+      <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:#6b5a44; margin:12px 0 4px;">🎯 My Goal for Today</div>
+      <div style="width:100%; font-size:0.9rem; border:1px solid #eee2c4; border-radius:6px; padding:10px; background:#fffdf8; color:#3a2f22; white-space:pre-wrap; min-height:60px;">${escapeHtml(goal)}</div>
+      </div>
+
+      <div style="background:#fbf6ea; border-radius:4px; padding:22px 18px 26px; position:relative; box-shadow:0 10px 20px rgba(0,0,0,0.28); min-height:200px;">
+      <div style="position:absolute; top:-13px; left:50%; transform:translateX(-50%); width:26px; height:26px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #b2a4ec, #8672c9); box-shadow:0 3px 5px rgba(0,0,0,0.4);"></div>
+      <div style="font-family:'Kalam', cursive; font-weight:700; font-size:1.35rem; margin-bottom:4px; padding:8px; border-bottom:2px dashed #eee2c4; color:#8672c9;">🧠 Word of The Day</div>
+      <div style="text-align:center; font-size:0.75rem; color:#6b5a44; margin:6px 0 14px; line-height:1.4;">Class values &amp; announcements</div>
+
+      <div style="display:flex; align-items:center; gap:10px; background:#f7f2ff; border:1px solid #e2d6ff; border-radius:8px; padding:10px 12px; margin-bottom:12px;">
+      <span style="font-size:1.8rem;">💡</span>
+      <span style="font-family:'Kalam', cursive; font-weight:700; font-size:1.1rem; color:#5b3fa0;">${escapeHtml(valueOfDay)}</span>
+      </div>
+
+      <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:#6b5a44; margin:12px 0 4px;">What it means?</div>
+      <div style="background:#fff; width:100%; border:1px dashed #e2d6ff; border-radius:6px; padding:10px 12px; font-size:0.85rem; color:#6b5a44; white-space:pre-wrap;">${escapeHtml(valueMeaning)}</div>
+
+      <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:#6b5a44; margin:12px 0 4px;">‼️ Announcements</div>
+      <div style="background:#fff; width:100%; border:1px dashed #e2d6ff; border-radius:6px; padding:10px 12px; font-size:0.85rem; color:#6b5a44; white-space:pre-wrap;">${escapeHtml(announcements)}</div>
+      </div>
+      </div>
+
+      <div style="text-align:center; margin-top:18px; font-size:0.85rem; color:#fff3d9; opacity:0.9;">Thank you for reading my bulletin board. 🥰</div>
+      </div>
+      `;
+
 
 
 
