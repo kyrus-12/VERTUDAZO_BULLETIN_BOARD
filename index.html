@@ -583,7 +583,9 @@
           <span class="board-tape-text">
           <h1>🌍 Our Bulletin Board 🌏</h1>
           </span>
-          <div class="board-date" id="boardDate"></div>
+          <div class="board-date">
+            <span id="boardDate"></span> • ⌚ <span id="timeRange">--:-- --</span>
+          </div>
         </div>
 
         <div class="columns">
@@ -816,7 +818,7 @@
       <div style="text-align:center; margin-bottom:24px; position:relative;">
       <div style="position:absolute; top:-14px; left:50%; transform:translate(-50%) rotate(-2deg); width:170px; height:30px; background:repeating-linear-gradient(45deg, #f4dd8c, #f4dd8c 8px, #e0c661 8px, #e0c661 16px); box-shadow:0 2px 4px rgba(0,0,0,0.25);"></div>
       <h1 style="font-family:'Kalam', cursive; font-weight:700; font-size:2.4rem; color:#fffdf6; text-shadow:0 2px 3px rgba(0,0,0,0.35); margin:0; letter-spacing:0.5px;">🌍 Our Bulletin Board 🌏</h1>
-      <div style="font-size:0.95rem; color:#fff3d9; opacity:0.9; font-weight:600; margin-top:4px;">${dateStr}</div>
+      <div style="font-size:0.95rem; color:#fff3d9; opacity:0.9; font-weight:600; margin-top:4px;">${dateStr} • ${timerEl.textContent}</div>
       </div>
 
       <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
@@ -869,7 +871,7 @@
       </div>
 
       <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:#6b5a44; margin:12px 0 4px;">What it means?</div>
-      <div style="background:#fff; width:100%; border:1px dashed #e2d6ff; border-radius:6px; padding:10px 12px; font-size:0.85rem; color:#6b5a44; white-space:pre-wrap;">${escapeHtml(valueMeaning)}</div>
+      <div style="background:#fff; width:100%; border:1px dashed #e2d6ff; border-radius:6px; padding:10px 12px; font-size:0.85rem; color:#6b5a44; min-height:200px; white-space:pre-wrap;">${escapeHtml(valueMeaning)}</div>
 
       <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:#6b5a44; margin:12px 0 4px;">‼️ Announcements</div>
       <div style="background:#fff; width:100%; border:1px dashed #e2d6ff; border-radius:6px; padding:10px 12px; font-size:0.85rem; color:#6b5a44; white-space:pre-wrap;">${escapeHtml(announcements)}</div>
@@ -912,7 +914,39 @@
       a.click();
       document.body.removeChild(a);
     });
-  
+
+    const startTimeObj = new Date();
+
+    function formatTime12h(date){
+      let h = date.getHours();
+      const m = String(date.getMinutes()).padStart(2, '0');
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      h = h ? h : 12;
+      return `${h}:${m} ${ampm}`;
+    }
+
+    function formatDuration(start, end){
+      const diffMs = end - start;
+      const diffMins = Math.floor(diffMs / 60000);
+      const h = Math.floor(diffMins / 60);
+      const m = diffMins % 60;
+      if(h > 0) return `${h}h ${m}m`;
+      return `${m} min`;
+    }
+
+    const timerEl = document.getElementById('timeRange');
+
+    function updateTimeRange(){
+      const now = new Date();
+      const range = `${formatTime12h(startTimeObj)} - ${formatTime12h(now)}`;
+      const dur = formatDuration(startTimeObj, now);
+      timerEl.textContent = `${range} ${dur}`;
+    }
+
+    setInterval(updateTimeRange, 1000);
+    updateTimeRange();
+
   </script>
   </body>
 </html>
