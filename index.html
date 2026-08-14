@@ -955,12 +955,12 @@
 
       if(key === 'f'){
         if(!document.fullScreenElement){
-          document.documentElement.requestFullScreen().catch(() => {});
+          document.documentElement.requestFullscreen().catch(() => {});
         }
       }
       if(key === 'e'){
         if(!document.fullScreenElement){
-          document.exitFullScreen().catch(() => {});
+          document.exitFullscreen().catch(() => {});
         }
       }
     });
