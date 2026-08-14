@@ -792,7 +792,7 @@
       const photoCells = [...card.querySelectorAll('.photo-cell')];
       const photoDataUrl = photoCells.map(cell => cell.dataset.imgSrc || null);
 
-      const valueOfDay = document.getElementById('valueOfDay').value || 'Value';
+      const valueOfDay = document.getElementById('valueOfDay').value || '';
       const valueMeaning = document.getElementById('valueMeaning').value;
       const reflection = document.getElementById('reflectionText').value;
       const announcements = document.getElementById('announcements').value;
