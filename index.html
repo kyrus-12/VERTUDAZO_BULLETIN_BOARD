@@ -377,7 +377,7 @@
         border-color:var(--pin-teal);
       }
       .reflection-area{
-        min-height:400px;
+        min-height:250px;
       }
       .value-badge{
         display:flex;
@@ -571,7 +571,6 @@
       }
       .info-note{
         min-height:200px;
-        text-align:left;
       }  
     </style>
   </head>
@@ -624,8 +623,8 @@
             <textarea class="info-type" id="valueMeaning" placeholder="Write the definition here..."></textarea>
             <label class="field-label">📢 Announcements</label>
             <textarea class="info-note" id="announcements" rows="3"  readonly>
-              📍 Bring your art materials
-              📍Quiz on Friday
+          📍 Bring your art materials
+          📍Quiz on Friday
             </textarea>
           </section>
         </div>
@@ -874,7 +873,7 @@
       <div style="background:#fff; width:100%; border:1px dashed #e2d6ff; border-radius:6px; padding:10px 12px; font-size:0.85rem; color:#6b5a44; min-height:60px; white-space:pre-wrap;">${escapeHtml(valueMeaning)}</div>
 
       <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:#6b5a44; margin:12px 0 4px;">‼️ Announcements</div>
-      <div style="background:#fff; width:100%; border:1px dashed #e2d6ff; border-radius:6px; padding:10px 12px; font-size:0.85rem; text-align:left; color:#6b5a44; white-space:pre-wrap;">${escapeHtml(announcements)}</div>
+      <div style="background:#fff; width:100%; border:1px dashed #e2d6ff; border-radius:6px; padding:10px 12px; font-size:0.85rem; color:#6b5a44; white-space:pre-wrap;">${escapeHtml(announcements)}</div>
       </div>
       </div>
 
