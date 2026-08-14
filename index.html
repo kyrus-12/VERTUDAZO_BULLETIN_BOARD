@@ -930,7 +930,7 @@
       const diffMins = Math.floor(diffMs / 60000);
       const h = Math.floor(diffMins / 60);
       const m = diffMins % 60;
-      if(h > 0) return `${h}h (${m}m)`;
+      if(h > 0) return `(${h}h and ${m}m)`;
       return `(${m} mins)`;
     }
 
