@@ -946,6 +946,26 @@
     setInterval(updateTimeRange, 1000);
     updateTimeRange();
 
+    document.addEventListener('keydown', (e) => {
+      const tag = e.target.tagName.toLowerCase();
+      const isTyping = tag === 'input' || tag === 'textarea' || e.target.isContentEditable;
+      if(isTyping) return;
+
+      const key = e.key.toLowerCase();
+
+      if(key === 'f'){
+        if(!document.fullScreenElement){
+          doocument.documentElement.requestFullScreen().catch(() => {});
+        }
+      }
+      if(key === 'e'){
+        if(!document.fullScreenElement){
+          doocument.exitFullScreen().catch(() => {});
+        }
+      }
+    });
+        
+
   </script>
   </body>
 </html>
