@@ -591,7 +591,7 @@
           <section class="column col-motivational">
             <div class="col-header">🙋🏻 Attendance 🙋🏻‍♀️</div>
             <div class="col-sub">Fill your own card. If you don't have any gadgets borrow from your classmate and create your own card.</div>
-            <div id="emptyState" class="empty-state">No one's added their bulletin yet. Tap <b>+ Add my Bulletin</b> when it's your turn!</div>
+            <div id="emptyState" class="empty-state">No one's added their bulletin yet. Tap <b>+ Add my Bulletin</b> when it's your turn! <br><br> Press F for fullscreen, and E for exit fullscreen.</div>
             <div id="studentsList"></div>
             <button class="add-student-btn no-capture" id="addStudentBtn">+ Add my Bulletin</button>
           </section>
@@ -940,7 +940,7 @@
       const now = new Date();
       const range = `${formatTime12h(startTimeObj)} - ${formatTime12h(now)}`;
       const dur = formatDuration(startTimeObj, now);
-      timerEl.textContent = `${range} ${dur}`;
+      timerEl.textContent = `${range} (${dur})`;
     }
 
     setInterval(updateTimeRange, 1000);
