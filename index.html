@@ -930,8 +930,8 @@
       const diffMins = Math.floor(diffMs / 60000);
       const h = Math.floor(diffMins / 60);
       const m = diffMins % 60;
-      if(h > 0) return `${h}h ${m}m`;
-      return `${m} min`;
+      if(h > 0) return `${h}h (${m}m)`;
+      return `(${m}) min`;
     }
 
     const timerEl = document.getElementById('timeRange');
@@ -940,7 +940,7 @@
       const now = new Date();
       const range = `${formatTime12h(startTimeObj)} - ${formatTime12h(now)}`;
       const dur = formatDuration(startTimeObj, now);
-      timerEl.textContent = `${range} (${dur})`;
+      timerEl.textContent = `${range} ${dur}`;
     }
 
     setInterval(updateTimeRange, 1000);
